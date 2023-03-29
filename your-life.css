@@ -119,7 +119,11 @@ input:required:invalid.touched {
   color: #aaaaaa;
 }
 
-
+/* doesn't work for some reason */
+.p1 {
+  /*margin: 25px 0; */
+  text-align: center;
+}
 
 /**
 * Page Specific styles
@@ -192,7 +196,139 @@ input:required:invalid.touched {
   box-sizing: border-box;
 }
 
+/* Set current week square color to black */
+.weeks > li.current-week:before {
+  background-color: black;
+}
 
+
+/* BASE STYLES FOR EACH */
+.tooltip {
+  /* display: inline-block; */
+  /* Real styles */
+  pointer-events: none; 
+  user-select: none;
+  font-size: 10px; 
+  position: absolute;
+	width: 50%;
+  padding: 5px;
+	background-color: #fff;
+  border: 1px solid #c1c1c1;
+	border-radius: 4px;
+  /* white-space: nowrap; */
+  white-space: normal; /* add this line to wrap the text */
+	box-shadow: 0 0 10px #c1c1c1;
+  transform: translateY(10px);
+  /* added to auto size the text box */
+  /* line-height: 1.5; */
+  /* max-height: 200px; */
+  /* overflow: auto; */
+}
+
+/* TOP */
+.tooltip:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 150px; /* 62px; 23px */
+	top: -11px; /* -42px */
+  border: 6px solid transparent;
+  border-bottom: 5px solid rgb(0, 0, 0); /* IE8 Fallback */
+  border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+.tooltip:after {
+  content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 150px; /* 63px */
+	top: -10px; /* -32px */
+  border: 5px solid transparent;
+  border-bottom: 5px solid #fff;
+  z-index: 0;
+  /* user-select: none; */
+}
+
+
+/* .tooltip {
+  position: absolute;
+  background-color: white;
+  font-size: 10px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 2px;
+  white-space: nowrap;
+  transform: translateY(10px);
+}
+
+.tooltip:after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  border: 8px solid transparent;
+  border-bottom-color: white;
+  transform: translateX(-50%);
+}
+
+.tooltip:before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% - 1px);
+  left: 50%;
+  border: 8px solid transparent;
+  border-top: 1px solid black; add a 1px black border around the top triangle part 
+  transform: translateX(-50%);
+} */
+
+.textbox {
+  display: none;
+}
+
+/*
+.tooltip {
+  position: absolute;
+    top: 25px;  100%; set top to 100% to place tooltip below the square
+    left: 50%; 
+    transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid black;
+  padding: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.textbox {
+  display: none;
+}
+*/
+
+/* .week-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  visibility: hidden;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 14px;
+  width: 300px;
+}
+
+.week-number {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.age-number {
+  margin-bottom: 5px;
+}
+
+.longer-text {
+  margin-bottom: 5px;
+} */
 
 /*
 .weeks > li {
@@ -234,26 +370,34 @@ input:required:invalid.touched {
 
 .weeks--x2-label {
   position: relative;
-  top: 383px;
+  top: 379.3px;
   margin-left: 2px;
+  pointer-events: none;
+  user-select: none;
 }
 
 .weeks--x3-label {
   position: relative;
-  top: 388.5px;
+  top: 373.3px;
   margin-left: 2px;
   opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
 }
 .weeks--x4-label {
   position: relative;
-  top: 466.6px;
+  top: 463.3px;
   margin-left: 2px;
+  pointer-events: none;
+  user-select: none;
 }
 .weeks--x5-label {
   position: relative;
-  top: 495.9px;
+  top: 409.3px;
   margin-left: 2px;
   opacity: 0.5;
+  pointer-events: none; 
+  user-select: none;
 }
 
 .weeks--y-label {
