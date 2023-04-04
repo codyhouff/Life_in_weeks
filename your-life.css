@@ -1,0 +1,667 @@
+/**
+ * Normalize
+ */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  font-family: Helvetica, Ariel, sans-serif;
+  margin: 8px; /* for page padding on mobile */
+}
+
+/**
+ * Common Page Styles
+ */
+.title-box {
+  padding-top: 1rem;
+  text-align: center;
+}
+.title {
+  display: inline;
+  color: #000080;
+}
+.unitbox-label {
+  display: inline;
+}
+.unitbox {
+  display: inline;
+  font-family: sans-serif;
+  line-height: 1.125;
+  padding: 0 0.75em 0 0;
+  margin: 0;
+  color: #CB0509;
+  font-size: 2em;
+  font-weight: 700;
+  border-radius: 0;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #CB0509;
+
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23CB0509%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+	background-repeat: no-repeat, repeat;
+	/* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
+	background-position: right 0em top 50%, 0 0;
+	/* icon size, then gradient */
+  background-size: .45em auto, 100%;
+}
+/* Hide arrow icon in IE browsers */
+.unitbox::-ms-expand {
+	display: none;
+}
+.unitbox option {
+  font-weight: normal;
+  font-size: 1em;
+}
+
+
+.dob {
+  text-align: center;
+}
+.instruction {
+  font-size: 0.9em;
+  margin-bottom: 0.3rem;
+}
+.day {
+  width: 2em;
+}
+.year {
+  width: 4em;
+}
+input:required:invalid.touched {
+  border: 2px solid red;
+}
+.chart {
+  position: relative;
+  margin: 4rem auto 2rem auto;
+  padding: 0;
+  list-style-type: none;
+}
+.x-axis {
+  position: absolute;
+  top: -2.75em;
+  height: 2.75em;
+  width: 100%;
+}
+
+.x2-axis {
+  position: relative;
+  top: -2.75em;
+  height: 0em;
+  width: 620px;
+}
+
+.x-axis .markers,
+.y-axis .markers {
+  font-size: 0.8rem;
+  color: black;
+}
+.y2-axis .markers {
+  font-size: 0.8rem;
+  color: black;
+}
+.credits {
+  font-size: 0.8rem;
+  text-align: center;
+  color: #aaaaaa;
+  padding-bottom: 1rem;
+}
+.credits a:link,
+.credits a:hover,
+.credits a:visited {
+  color: #aaaaaa;
+}
+
+/* doesn't work for some reason */
+.p1 {
+  /*margin: 25px 0; */
+  text-align: center;
+}
+
+/**
+* Page Specific styles
+*/
+/* INDEX */
+.index {
+  text-align: center;
+  margin: 25vh auto 0;
+  padding: 0;
+}
+.index li {
+  font-size: 2.5em;
+}
+
+/* YEARS */
+.years {
+  max-width: 380px; /* 38px per year * 10years = 380px */
+}
+.years > li {
+  border: 1px solid black;
+  width: 5.789473684%; /* 22px/380px */
+  /*  For border-box sizing, width includes borders. Thus a         //
+  //  22px width is a like a padding of 20px with two 1px borders.  */
+  padding-bottom: 5.263157895%; /* 20px/380px */
+  margin: 2.105263158%; /* 8px/380px */
+  float: left;
+  transform: rotate(45deg);
+}
+
+/* MONTHS */
+.months {
+  max-width: 504px; /* 14px per month * 36 months = 504px */
+}
+.months > li {
+  border: 1px solid black;
+  width: 2.380952381%; /* 12px/504px */
+  padding-bottom: 1.984126984%; /* 10px/504px */
+  margin: .198412698%; /* 1px/504px */
+  border-radius: 50%;
+  float: left;
+}
+
+/* WEEKS */
+.weeks {
+  max-width: 624px; /* 12px per week * 52weeks = 624px */
+}
+
+.weeks > li {
+  /* border: 1px solid black; */
+  width: 12px;
+  height: 12px;
+  /* margin: 2px; */
+  float: left;
+  background-color: var(--outer-square-color,  white);
+  /* Default bottom color */
+  /* border-bottom: 2px solid var(--bottom-outer-square-color, rgba(255, 255, 255, 0));*/
+  /* background-color: white; */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*position: relative;   Set the position of the element to relative */
+  z-index: 2; /* Set a higher z-index to the element to make it appear above the tooltip */
+}
+
+/* Create a pseudo-element that covers the border-bottom */
+.weeks > li::after {
+  content: '';
+  position: absolute; /* Set the position of the pseudo-element to absolute */
+  /*bottom: 30;  Position the pseudo-element at the bottom of the element */
+  left: 0;
+  width: 100%;
+  height: 2px; /* Set the height of the pseudo-element to match the border-bottom width */
+  background-color: var(--bottom-outer-square-color, rgba(255, 255, 255, 0));
+  z-index: 1; /* Set the z-index of the pseudo-element to be higher than the element's content */
+  margin-bottom: -12px; 
+}
+
+/* Style the inner square */
+.weeks > li:before {
+  content: "";
+  display: block;
+  border: 1px var(--inner-square-border-color,  solid black);
+  width: 8px;
+  height: 8px;
+  /* margin: 1px; */
+  background-color: var(--inner-square-color,  white);
+  box-sizing: border-box;
+}
+
+/* Set current week square color to black */
+.weeks > li.current-week:before {
+  background-color: black;
+}
+
+
+/* BASE STYLES FOR EACH */
+.tooltip {
+  /* display: inline-block; */
+  /* Real styles */
+  pointer-events: none; 
+  user-select: none;
+  font-size: 10px; 
+  position: absolute;
+	width: 50%;
+  padding: 5px;
+	background-color: #fff;
+  border: 1px solid #c1c1c1;
+	border-radius: 4px;
+  /* white-space: nowrap; */
+  white-space: normal; /* add this line to wrap the text */
+	box-shadow: 0 0 10px #c1c1c1;
+  /*top: -20px;*/
+  transform: translateY(10px);
+  /* added to auto size the text box */
+  /* line-height: 1.5; */
+  /* max-height: 200px; */
+  /* overflow: auto; */
+  z-index: 10;
+}
+
+/* TOP */
+.tooltip:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 150px; /* 62px; 23px */
+	top: -11px; /* -42px */
+  border: 6px solid transparent;
+  border-bottom: 5px solid rgb(0, 0, 0); /* IE8 Fallback */
+  border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+  z-index: 8;
+}
+.tooltip:after {
+  content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 150px; /* 63px */
+	top: -10px; /* -32px */
+  border: 5px solid transparent;
+  border-bottom: 5px solid #fff;
+  z-index: 9;
+  /* user-select: none; */
+}
+
+
+/* .tooltip {
+  position: absolute;
+  background-color: white;
+  font-size: 10px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 2px;
+  white-space: nowrap;
+  transform: translateY(10px);
+}
+
+.tooltip:after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  border: 8px solid transparent;
+  border-bottom-color: white;
+  transform: translateX(-50%);
+}
+
+.tooltip:before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% - 1px);
+  left: 50%;
+  border: 8px solid transparent;
+  border-top: 1px solid black; add a 1px black border around the top triangle part 
+  transform: translateX(-50%);
+} */
+
+.textbox {
+  display: none;
+}
+
+/*
+.tooltip {
+  position: absolute;
+    top: 25px;  100%; set top to 100% to place tooltip below the square
+    left: 50%; 
+    transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid black;
+  padding: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.textbox {
+  display: none;
+}
+*/
+
+/* .week-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  visibility: hidden;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 14px;
+  width: 300px;
+}
+
+.week-number {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.age-number {
+  margin-bottom: 5px;
+}
+
+.longer-text {
+  margin-bottom: 5px;
+} */
+
+/*
+.weeks > li {
+  border: 1px solid black;
+  width: 1.282051282%; 12px/504px
+  padding-bottom: .961538462%; 10px/504px 
+  margin: .320512821%; 1px/504px
+  float: left;
+}
+*/
+/*
+.li {
+  border: 1px solid black;
+  width: 10px;
+  height: 10px;
+  margin: 2px;
+  float: left;
+  background-color: red;
+  box-sizing: border-box;
+}
+
+.li:before {
+  content: "";
+  display: block;
+  border: 1px solid black;
+  width: 6px;
+  height: 6px;
+  margin: 1px;
+  background-color: white;
+  box-sizing: border-box;
+}
+*/
+
+
+.weeks--x-label {
+  color: #000080;
+  font-size: 1.25rem;
+}
+
+/*
+.weeks--x2-label {
+  position: relative;
+  top: 379.3px;
+  margin-left: 2px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.weeks--x3-label {
+  position: relative;
+  top: 373.3px;
+  margin-left: 2px;
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+}
+.weeks--x4-label {
+  position: relative;
+  top: 463.3px;
+  margin-left: 2px;
+  pointer-events: none;
+  user-select: none;
+}
+.weeks--x5-label {
+  position: relative;
+  top: 409.3px;
+  margin-left: 2px;
+  opacity: 0.5;
+  pointer-events: none; 
+  user-select: none;
+}
+*/
+.weeks--y-label {
+  color: #000080;
+  transform: rotate(-90deg);
+  font-size: 1.25rem;
+  position: absolute;
+  left: -118px;
+  top: 78px;
+}
+.weeks--y2-label {
+  color: #000080;
+  transform: rotate(-90deg);
+  font-size: 1.25rem;
+  position: absolute;
+  left: 625px;
+  top: 78px;
+}
+
+.li-test1 {
+  color: #000080;
+  width: 8px;
+}
+.weeks--x-arrow {
+  padding-left: 10px;
+  vertical-align: bottom;
+}
+@media (max-width: 350px) {
+  .weeks--x-arrow {
+    display: none;
+  }
+}
+
+.weeks--y-arrow {
+  padding-right: 10px;
+  vertical-align: bottom;
+}
+.weeks--y2-arrow {
+  padding-right: 10px;
+  vertical-align: bottom;
+}
+.weeks--x-markers span {
+  position: absolute;
+  bottom: 0;
+}
+/* The year is divided into 52 weeks, so the % marker location //
+// can be found at (1/52)n (where n is the week number). We    //
+// must offset by 1 because we start counting at 1, so the     //
+// final equation is (n/52)-(1/52)                             */
+.weeks--x-markers span:nth-of-type(1) { left: 0;             }
+.weeks--x-markers span:nth-of-type(2) { left: 7.6923076920%; }
+.weeks--x-markers span:nth-of-type(3) { left: 17.307692308%; }
+.weeks--x-markers span:nth-of-type(4) { left: 26.923076923%; }
+.weeks--x-markers span:nth-of-type(5) { left: 36.538461538%; }
+.weeks--x-markers span:nth-of-type(6) { left: 46.153846154%; }
+.weeks--x-markers span:nth-of-type(7) { left: 55.769230769%; }
+.weeks--x-markers span:nth-of-type(8) { left: 65.384615385%; }
+.weeks--x-markers span:nth-of-type(9) { left: 75%;           }
+.weeks--x-markers span:nth-of-type(10) { left: 84.615384615%; }
+.weeks--x-markers span:nth-of-type(11) { left: 94.230769231%; }
+
+.weeks--y-markers span {
+  position: absolute;
+  left: -1.25em;
+}
+:root {
+  --top_space1: 5.4945%;
+  --top_const1: -.17%
+}
+.weeks--y-markers span:nth-of-type(1) { top: 0; } /* (n/90) */
+.weeks--y-markers span:nth-of-type(2) { top: calc(var(--top_space1) * 1 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(3) { top: calc(var(--top_space1) * 2 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(4) { top: calc(var(--top_space1) * 3 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(5) { top: calc(var(--top_space1) * 4 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(6) { top: calc(var(--top_space1) * 5 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(7) { top: calc(var(--top_space1) * 6 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(8) { top: calc(var(--top_space1) * 7 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(9) { top: calc(var(--top_space1) * 8 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(10) { top: calc(var(--top_space1) *9 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(11) { top: calc(var(--top_space1) * 10 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(12) { top: calc(var(--top_space1) * 11 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(13) { top: calc(var(--top_space1) * 12 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(14) { top: calc(var(--top_space1) * 13 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(15) { top: calc(var(--top_space1) * 14 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(16) { top: calc(var(--top_space1) * 15 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(17) { top: calc(var(--top_space1) * 16 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(18) { top: calc(var(--top_space1) * 17 + var(--top_const1)); }
+.weeks--y-markers span:nth-of-type(19) { top: calc(var(--top_space1) * 18 + var(--top_const1)); }
+
+/*         
+        <!-- High -->
+        <div class="form-group two">
+          <div class="two_cell"><input type="text" class="form-control floating-label" id="txtStartedEdu03" serialize-as="edu03_start" placeholder="High School at" value="14" /></div>
+          <div class="two_cell"><input type="text" class="form-control floating-label" placeholder="Duration (years)" id="age_started_edu03" value="4" serialize-as="edu03_duration" /></div> 
+        </div> 
+*/
+
+.weeks--y2-markers span {
+  position: absolute;
+  right: -2.40em;
+  font-size: 0.8rem;/*0.7rem */
+  color: black;
+}
+
+:root {
+  --top_space: 5.4945%; /*1.099% */
+  --top_const: -2.36%;
+}
+
+.weeks--y2-markers span:nth-of-type(1) { top: 0; } /* (n/90) */
+.weeks--y2-markers span:nth-of-type(2) { top: calc(var(--top_space) * 1 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(3) { top: calc(var(--top_space) * 2 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(4) { top: calc(var(--top_space) * 3 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(5) { top: calc(var(--top_space) * 4 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(6) { top: calc(var(--top_space) * 5 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(7) { top: calc(var(--top_space) * 6 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(8) { top: calc(var(--top_space) * 7 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(9) { top: calc(var(--top_space) * 8 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(10) { top: calc(var(--top_space) * 9 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(11) { top: calc(var(--top_space) * 10 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(12) { top: calc(var(--top_space) * 11 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(13) { top: calc(var(--top_space) * 12 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(14) { top: calc(var(--top_space) * 13 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(15) { top: calc(var(--top_space) * 14 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(16) { top: calc(var(--top_space) * 15 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(17) { top: calc(var(--top_space) * 16 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(18) { top: calc(var(--top_space) * 17 + var(--top_const)); }
+.weeks--y2-markers span:nth-of-type(19) { top: calc(var(--top_space) * 18 + var(--top_const)); }
+
+
+
+
+/*
+.weeks--y2-markers span:nth-of-type(1) {top: 0;}  (n/90) 
+.weeks--y2-markers span:nth-of-type(2) { top: calc(var(--top_space) * 1); }
+.weeks--y2-markers span:nth-of-type(3) { top: calc(var(--top_space) * 2); }
+.weeks--y2-markers span:nth-of-type(4) { top: calc(var(--top_space) * 3); }
+.weeks--y2-markers span:nth-of-type(5) { top: calc(var(--top_space) * 4); }
+.weeks--y2-markers span:nth-of-type(6) { top: calc(var(--top_space) * 5); }
+.weeks--y2-markers span:nth-of-type(7) { top: calc(var(--top_space) * 6); }
+.weeks--y2-markers span:nth-of-type(8) { top: calc(var(--top_space) * 7); }
+.weeks--y2-markers span:nth-of-type(9) { top: calc(var(--top_space) * 8); }
+.weeks--y2-markers span:nth-of-type(10) { top: calc(var(--top_space) * 9); }
+.weeks--y2-markers span:nth-of-type(11) { top: calc(var(--top_space) * 10); }
+.weeks--y2-markers span:nth-of-type(12) { top: calc(var(--top_space) * 11); }
+.weeks--y2-markers span:nth-of-type(13) { top: calc(var(--top_space) * 12); }
+.weeks--y2-markers span:nth-of-type(14) { top: calc(var(--top_space) * 13); }
+.weeks--y2-markers span:nth-of-type(15) { top: calc(var(--top_space) * 14); }
+.weeks--y2-markers span:nth-of-type(16) { top: calc(var(--top_space) * 15); }
+.weeks--y2-markers span:nth-of-type(17) { top: calc(var(--top_space) * 16); }
+.weeks--y2-markers span:nth-of-type(18) { top: calc(var(--top_space) * 17); }
+.weeks--y2-markers span:nth-of-type(19) { top: calc(var(--top_space) * 18); }
+.weeks--y2-markers span:nth-of-type(20) { top: calc(var(--top_space) * 19); }
+.weeks--y2-markers span:nth-of-type(21) { top: calc(var(--top_space) * 20); }
+.weeks--y2-markers span:nth-of-type(22) { top: calc(var(--top_space) * 21); }
+.weeks--y2-markers span:nth-of-type(23) { top: calc(var(--top_space) * 22); }
+.weeks--y2-markers span:nth-of-type(24) { top: calc(var(--top_space) * 23); }
+.weeks--y2-markers span:nth-of-type(25) { top: calc(var(--top_space) * 24); }
+.weeks--y2-markers span:nth-of-type(26) { top: calc(var(--top_space) * 25); }
+.weeks--y2-markers span:nth-of-type(27) { top: calc(var(--top_space) * 26); }
+.weeks--y2-markers span:nth-of-type(28) { top: calc(var(--top_space) * 27); }
+.weeks--y2-markers span:nth-of-type(29) { top: calc(var(--top_space) * 28); }
+.weeks--y2-markers span:nth-of-type(30) { top: calc(var(--top_space) * 29); }
+.weeks--y2-markers span:nth-of-type(31) { top: calc(var(--top_space) * 30); }
+.weeks--y2-markers span:nth-of-type(32) { top: calc(var(--top_space) * 31); }
+.weeks--y2-markers span:nth-of-type(33) { top: calc(var(--top_space) * 32); }
+.weeks--y2-markers span:nth-of-type(34) { top: calc(var(--top_space) * 33); }
+.weeks--y2-markers span:nth-of-type(35) { top: calc(var(--top_space) * 34); }
+.weeks--y2-markers span:nth-of-type(36) { top: calc(var(--top_space) * 35); }
+.weeks--y2-markers span:nth-of-type(37) { top: calc(var(--top_space) * 36); }
+.weeks--y2-markers span:nth-of-type(38) { top: calc(var(--top_space) * 37); }
+.weeks--y2-markers span:nth-of-type(39) { top: calc(var(--top_space) * 38); }
+.weeks--y2-markers span:nth-of-type(40) { top: calc(var(--top_space) * 39); }
+.weeks--y2-markers span:nth-of-type(41) { top: calc(var(--top_space) * 40); }
+.weeks--y2-markers span:nth-of-type(42) { top: calc(var(--top_space) * 41); }
+.weeks--y2-markers span:nth-of-type(43) { top: calc(var(--top_space) * 42); }
+.weeks--y2-markers span:nth-of-type(44) { top: calc(var(--top_space) * 43); }
+.weeks--y2-markers span:nth-of-type(45) { top: calc(var(--top_space) * 44); }
+.weeks--y2-markers span:nth-of-type(46) { top: calc(var(--top_space) * 45); }
+.weeks--y2-markers span:nth-of-type(47) { top: calc(var(--top_space) * 46); }
+.weeks--y2-markers span:nth-of-type(48) { top: calc(var(--top_space) * 47); }
+.weeks--y2-markers span:nth-of-type(49) { top: calc(var(--top_space) * 48); }
+.weeks--y2-markers span:nth-of-type(50) { top: calc(var(--top_space) * 49); }
+.weeks--y2-markers span:nth-of-type(51) { top: calc(var(--top_space) * 50); }
+.weeks--y2-markers span:nth-of-type(52) { top: calc(var(--top_space) * 51); }
+.weeks--y2-markers span:nth-of-type(53) { top: calc(var(--top_space) * 52); }
+.weeks--y2-markers span:nth-of-type(54) { top: calc(var(--top_space) * 53); }
+.weeks--y2-markers span:nth-of-type(55) { top: calc(var(--top_space) * 54); }
+.weeks--y2-markers span:nth-of-type(56) { top: calc(var(--top_space) * 55); }
+.weeks--y2-markers span:nth-of-type(57) { top: calc(var(--top_space) * 56); }
+.weeks--y2-markers span:nth-of-type(58) { top: calc(var(--top_space) * 57); }
+.weeks--y2-markers span:nth-of-type(59) { top: calc(var(--top_space) * 58); }
+.weeks--y2-markers span:nth-of-type(60) { top: calc(var(--top_space) * 59); }
+.weeks--y2-markers span:nth-of-type(61) { top: calc(var(--top_space) * 60); }
+.weeks--y2-markers span:nth-of-type(62) { top: calc(var(--top_space) * 61); }
+.weeks--y2-markers span:nth-of-type(63) { top: calc(var(--top_space) * 62); }
+.weeks--y2-markers span:nth-of-type(64) { top: calc(var(--top_space) * 63); }
+.weeks--y2-markers span:nth-of-type(65) { top: calc(var(--top_space) * 64); }
+.weeks--y2-markers span:nth-of-type(66) { top: calc(var(--top_space) * 65); }
+.weeks--y2-markers span:nth-of-type(67) { top: calc(var(--top_space) * 66); }
+.weeks--y2-markers span:nth-of-type(68) { top: calc(var(--top_space) * 67); }
+.weeks--y2-markers span:nth-of-type(69) { top: calc(var(--top_space) * 68); }
+.weeks--y2-markers span:nth-of-type(70) { top: calc(var(--top_space) * 69); }
+.weeks--y2-markers span:nth-of-type(71) { top: calc(var(--top_space) * 70); }
+.weeks--y2-markers span:nth-of-type(72) { top: calc(var(--top_space) * 71); }
+.weeks--y2-markers span:nth-of-type(73) { top: calc(var(--top_space) * 72); }
+.weeks--y2-markers span:nth-of-type(74) { top: calc(var(--top_space) * 73); }
+.weeks--y2-markers span:nth-of-type(75) { top: calc(var(--top_space) * 74); }
+.weeks--y2-markers span:nth-of-type(76) { top: calc(var(--top_space) * 75); }
+.weeks--y2-markers span:nth-of-type(77) { top: calc(var(--top_space) * 76); }
+.weeks--y2-markers span:nth-of-type(78) { top: calc(var(--top_space) * 77); }
+.weeks--y2-markers span:nth-of-type(79) { top: calc(var(--top_space) * 78); }
+.weeks--y2-markers span:nth-of-type(80) { top: calc(var(--top_space) * 79); }
+.weeks--y2-markers span:nth-of-type(81) { top: calc(var(--top_space) * 80); }
+.weeks--y2-markers span:nth-of-type(82) { top: calc(var(--top_space) * 81); }
+.weeks--y2-markers span:nth-of-type(83) { top: calc(var(--top_space) * 82); }
+.weeks--y2-markers span:nth-of-type(84) { top: calc(var(--top_space) * 83); }
+.weeks--y2-markers span:nth-of-type(85) { top: calc(var(--top_space) * 84); }
+.weeks--y2-markers span:nth-of-type(86) { top: calc(var(--top_space) * 85); }
+.weeks--y2-markers span:nth-of-type(87) { top: calc(var(--top_space) * 86); }
+.weeks--y2-markers span:nth-of-type(88) { top: calc(var(--top_space) * 87); }
+.weeks--y2-markers span:nth-of-type(89) { top: calc(var(--top_space) * 88); }
+.weeks--y2-markers span:nth-of-type(90) { top: calc(var(--top_space) * 89); }
+.weeks--y2-markers span:nth-of-type(91) { top: calc(var(--top_space) * 90); }
+*/
+
+
+
+/**
+ * Utilities
+ */
+.group:after {
+  /* "group" is another name for clearfix */
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* see http://snook.ca/archives/html_and_css/hiding-content-for-accessibility */
+.visuallyhidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
